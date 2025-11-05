@@ -12,7 +12,7 @@ class TodoListState {
       TodoListState(items: items ?? this.items, isLoadingMore: isLoadingMore ?? this.isLoadingMore, cursor: cursor ?? this.cursor);
 }
 
-class TodoListViewModel extends AutoDisposeNotifier<TodoListState> {
+class TodoListViewModel extends Notifier<TodoListState> {
   late final String listId;
 
   @override
@@ -23,9 +23,10 @@ class TodoListViewModel extends AutoDisposeNotifier<TodoListState> {
 
   void init({required String listId}) {
     this.listId = listId;
-    final repo = ref.read(todoRepositoryProvider);
-    ref.listenManual(repo.watchTodos(listId: listId, limit: 20), (prev, next) {
-      state = state.copyWith(items: next);
+    ref.listen(todosStreamProvider(listId), (prev, next) {
+      if (next.hasValue) {
+        state = state.copyWith(items: next.value!);
+      }
     });
   }
 
@@ -45,7 +46,7 @@ class TodoListViewModel extends AutoDisposeNotifier<TodoListState> {
   }
 }
 
-final todoListViewModelProvider = AutoDisposeNotifierProvider<TodoListViewModel, TodoListState>(
+final todoListViewModelProvider = NotifierProvider.autoDispose<TodoListViewModel, TodoListState>(
   TodoListViewModel.new,
 );
 

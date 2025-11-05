@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "575379230615",
+    "project_id": "realtimetodomvvm",
+    "storage_bucket": "realtimetodomvvm.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:575379230615:android:75ec3d6d57e850393d3ed2",
+        "android_client_info": {
+          "package_name": "com.example.realtime_todo_mvvm"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBPrt6OZOsuYnTNVqUkieX-3C7tfSoNLFw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
